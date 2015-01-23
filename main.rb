@@ -1,9 +1,9 @@
 require_relative 'config/application'
 
-puts "Put your application code in #{File.expand_path(__FILE__)}"
+# puts "Put your application code in #{File.expand_path(__FILE__)}"
 
 input = ARGV
-case(input.shift.downcase)
+case(input.shift)
 when 'list'
   Todo.all.each do |l|
     puts "#{l.id}. [#{l.complete == true ? 'X' : ' '}] #{l.desc}"
@@ -15,7 +15,7 @@ when 'delete'
   puts "Deleted \"#{Todo.find(input).shift.desc}\" from your TODO list"
   Todo.delete(input)
 when 'complete'
-  Todo.update(input.first, complete:true)
+  Todo.update(input.first, complete: true)
   puts "Task \"#{Todo.find(input).shift.desc}\" has been marked COMPLETED"
 else
   puts "Invalid command!!!"
